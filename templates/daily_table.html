@@ -1,0 +1,24 @@
+<table>
+    <thead>
+        <tr>
+            <th style="width:50px">ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th style="width:150px">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in tasks %}
+        <tr>
+            <td>{{ task.id }}</td>
+            <td>{{ task.name }}</td>
+            <td>{{ task.description }} </td>
+            <td>
+                <span class="{% if task.status == 'Complete' %}status-complete{% else %}status-incomplete{% endif %}">
+                    {{ task.status }}
+                </span>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

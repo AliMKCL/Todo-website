@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/../static/daily.css">
+    <script src="https://unpkg.com/htmx.org@1.9.2"></script> <!-- Include HTMX for the table -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone-with-data.min.js"></script>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <title>Ymira's Daily Tasks</title>
+</head>
+
+<body>
+    <div class="main">
+        <div class="title">
+            <h1>Ymira's Daily Tasks</h1>
+        </div>
+
+        <!--Load table with HTMX-->
+        <div class="table_container">
+            <div class="daily_table" id="daily-table" hx-get="/update-daily" hx-trigger="load"></div>
+        </div>
+        <div class="bottom_buttons">
+            <label for="toggle-inputs0" class="toggle-label">Complete</label>
+            <label for="toggle-inputs1" class="toggle-label">Add task</label>
+            <label for="toggle-inputs2" class="toggle-label">Update task</label>
+            <label for="toggle-inputs3" class="toggle-label">Delete task</label>
+            <label for="toggle-inputs4" class="toggle-label">Reset tasks</label>
+        </div>
+
+        <input type="radio" name="toggle-input" id="toggle-inputs0">
+
+        <div class="input-container0">
+            <form class="task_form0" action="http://127.0.0.1:8000/daily-complete-task" method="post">
+                <input id="id" name="id" type="id" class="inputs0" placeholder="Enter id to complete">
+                <div><button type="submit" class="submit_button">Submit</button></div>
+            </form>
+        </div>
+
+        <input type="radio" name="toggle-input" id="toggle-inputs1">
+
+        <div class="input-container1">
+            <form class="task_form1" action="http://127.0.0.1:8000/daily-add-task" method="post">
+                <input id="name" name="name" type="category" class="inputs1" placeholder="Enter name">
+                <input id="description" name="description" type="description" class="inputs1"
+                    placeholder="Enter description">
+                <div><button type="submit" class="submit_button">Submit</button></div>
+            </form>
+        </div>
+
+        <input type="radio" name="toggle-input" id="toggle-inputs2">
+
+        <div class="input-container2">
+            <form class="task_form2" action="http://127.0.0.1:8000/daily-update-task" method="post">
+                <input type="id" name="id" class="inputs2" placeholder="Enter id to change">
+                <input type="name" name="name" class="inputs2" placeholder="Enter name">
+                <input type="description" name="description" class="inputs2" placeholder="Enter description">
+                <div><button type="submit" class="submit_button">Submit</button></div>
+            </form>
+        </div>
+
+        <input type="radio" name="toggle-input" id="toggle-inputs3">
+
+        <div class="input-container3">
+            <form class="task_form2" action="http://127.0.0.1:8000/daily-delete-task#delete-modal" method="post">
+                <input type="id" name="id" class="inputs3" placeholder="Enter id to delete">
+                <div><button type="submit" class="submit_button">Submit</button></div>
+            </form>
+        </div>
+
+        <div id="delete-modal" class="modal">
+            <div class="modal-content">
+                <h2>Task Completed!</h2>
+                <img class="hihihi" src="/../images/hihihi.png">
+
+                <!-- Clicking "Return" removes the fragment from the URL, hiding the modal -->
+                <a href="/dailies" class="close-button">Return</a>
+            </div>
+        </div>
+
+        <input type="radio" name="toggle-input" id="toggle-inputs4">
+
+        <div class="input-container4">
+            <form class="task_form4" action="http://127.0.0.1:8000/daily-reset-task" method="post">
+                <div><button type="submit" class="submit_button">Reset</button></div>
+            </form>
+        </div>
+
+        <div id="time-left">
+            <script>
+                function updateTimeLeft() {
+                    function updateTimeLeft() {
+                        // Set your desired timezone
+                        const timezone = "Asia/Istanbul";
+
+                        // Get the current time in that timezone
+                        const now = moment().tz(timezone);
+
+                        // Get tomorrow's midnight in that timezone
+                        const tomorrow = now.clone().add(1, 'day').startOf('day');
+
+                        // Calculate the difference in milliseconds
+                        const diff = tomorrow.diff(now);
+
+                        // Use moment.duration to get hours, minutes, and seconds
+                        const duration = moment.duration(diff);
+                        const hours = Math.floor(duration.asHours());
+                        const minutes = duration.minutes();
+                        const seconds = duration.seconds();
+
+                        // Format as HH:MM:SS (pad with zeros)
+                        const formattedTime =
+                            ("0" + hours).slice(-2) + ":" +
+                            ("0" + minutes).slice(-2) + ":" +
+                            ("0" + seconds).slice(-2);
+
+                        // Update the div content
+                        document.getElementById("time-left").innerHTML = "Time left: " + formattedTime;
+                    }
+
+                    // Update immediately and then every second
+                    updateTimeLeft();
+                    setInterval(updateTimeLeft, 1000);
+                }
+
+                // Update immediately and then every second
+                updateTimeLeft();
+                setInterval(updateTimeLeft, 1000);
+            </script>
+        </div>
+
+
+        <img class="teddy_bear" src="/../images/teddy_bear.png">
+        <img class="pink_hearts" src="/../images/pink_hearts.png">
+        <img class="butterfly" src="/../images/butterfly.png">
+    </div>
+</body>
+
+</html>

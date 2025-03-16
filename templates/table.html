@@ -1,0 +1,29 @@
+<style>
+    table {
+        font-size: 50px;
+    }
+</style>
+
+
+<table>
+    <thead>
+        <tr>
+            <th style="width: 50px">ID</th>
+            <th style="width: 200px">Category</th>
+            <th>Description</th>
+            <th style="width: 120px">Priority</th>
+            <th>Due date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in tasks %}
+        <tr>
+            <td>{{ task.id }}</td>
+            <td>{{ task.category }}</td>
+            <td>{{ task.description }}</td>
+            <td>{{ task.priority }}</td>
+            <td>{{ task.due_date }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

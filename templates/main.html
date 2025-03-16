@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/../static/main.css">
+    <script src="https://unpkg.com/htmx.org@1.9.2"></script> <!-- Include HTMX for the table -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone-with-data.min.js"></script>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+
+    <title>Ymira's To-do List</title>
+</head>
+
+<body>
+    <div class="mid_bg">
+        <div class="title">
+            <h1>Ymira's To-do List</h1>
+        </div>
+        <div class="top">
+
+            <!-- Input field to filter tasks (optional) -->
+            <input type="text" class="search" id="search" name="search" placeholder="Search by category..."
+                hx-get="/update-table" hx-trigger="keyup changed delay:300ms" hx-target="#task-table">
+
+            <div class="task_table">
+                <div id="task-table" hx-get="/update-table" hx-trigger="load">
+                    <!-- The table will load here dynamically -->
+                </div>
+            </div>
+
+        </div>
+
+        <!--From here to the images part, hidden check trick is used. An invisible check is toggled on and off which determines whether the input fields are visible or not-->
+        <div class="bottom_buttons">
+            <label for="toggle-inputs1" class="toggle-label">Add task</label>
+            <label for="toggle-inputs2" class="toggle-label">Update task</label>
+            <label for="toggle-inputs3" class="toggle-label">Delete task</label>
+        </div>
+
+        <input type="radio" name="toggle-input" id="toggle-inputs1">
+
+        <div class="input-container1">
+            <form class="task_form1" action="http://127.0.0.1:8000/add-task" method="post">
+                <input id="category" name="category" type="category" class="inputs1" placeholder="Enter category">
+                <input id="description" name="description" type="description" class="inputs1"
+                    placeholder="Enter description">
+                <select id="priority" name="priority" type="priority" class="inputs1" placeholder="Enter priority">
+                    <option value="">Select priority</option>
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
+                <input id="due_date" name="due_date" type="due_date" class="inputs1" placeholder="Enter due date">
+                <div><button type="submit" class="submit_button">Submit</button></div>
+            </form>
+        </div>
+
+        <input type="radio" name="toggle-input" id="toggle-inputs2">
+
+        <div class="input-container2">
+            <form class="task_form2" action="http://127.0.0.1:8000/update-task" method="post">
+                <input type="id" name="id" class="inputs2" placeholder="Enter id">
+                <input type="category" name="category" class="inputs2" placeholder="Enter category">
+                <input type="description" name="description" class="inputs2" placeholder="Enter description">
+                <select id="priority" type="priority" name="priority" class="inputs2" placeholder="Enter priority">
+                    <option value="">Select priority</option>
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
+                <input type="due_date" name="due_date" class="inputs2" placeholder="Enter due date">
+                <div><button type="submit" class="submit_button">Submit</button></div>
+            </form>
+        </div>
+
+        <input type="radio" name="toggle-input" id="toggle-inputs3">
+
+        <div class="input-container3">
+            <form class="task_form2" action="http://127.0.0.1:8000/delete-task#delete-modal" method="post">
+                <input type="id" name="id" class="inputs3" placeholder="Enter id">
+                <div><button type="submit" class="submit_button">Submit</button></div>
+            </form>
+        </div>
+
+        <div id="delete-modal" class="modal">
+            <div class="modal-content">
+                <h2>Task Completed!</h2>
+                <img class="hihihi" src="/../images/hihihi.png">
+
+                <!-- Clicking "Return" removes the fragment from the URL, hiding the modal -->
+                <a href="/main" class="close-button">Return</a>
+            </div>
+        </div>
+
+
+        <img class="teddy_bear" src="/../images/teddy_bear.png">
+        <img class="pink_hearts" src="/../images/pink_hearts.png">
+        <img class="butterfly" src="/../images/butterfly.png">
+        <img class="us" src="/../images/us.png">
+
+    </div>
+
+    <div class="right_bg">
+        <div class="right_title">
+            <h1>Dailies</h1>
+        </div>
+
+        <div class="progress_number">
+            <div id="daily-fraction-container" hx-get="/daily_fraction" hx-trigger="load"></div>
+            <!--HTMX load fraction template-->
+        </div>
+
+        <div id="time-left">
+            <script>
+                function updateTimeLeft() {
+                    // Set your desired timezone
+                    const timezone = "Asia/Istanbul";
+
+                    // Get the current time in that timezone
+                    const now = moment().tz(timezone);
+
+                    // Get tomorrow's midnight in that timezone
+                    const tomorrow = now.clone().add(1, 'day').startOf('day');
+
+                    // Calculate the difference in milliseconds
+                    const diff = tomorrow.diff(now);
+
+                    // Use moment.duration to get hours, minutes, and seconds
+                    const duration = moment.duration(diff);
+                    const hours = Math.floor(duration.asHours());
+                    const minutes = duration.minutes();
+                    const seconds = duration.seconds();
+
+                    // Format as HH:MM:SS (pad with zeros)
+                    const formattedTime =
+                        ("0" + hours).slice(-2) + ":" +
+                        ("0" + minutes).slice(-2) + ":" +
+                        ("0" + seconds).slice(-2);
+
+                    // Update the div content
+                    document.getElementById("time-left").innerHTML = "Time left: " + formattedTime;
+                }
+
+                // Update immediately and then every second
+                updateTimeLeft();
+                setInterval(updateTimeLeft, 1000);
+            </script>
+        </div>
+
+        <div>
+            <form action="http://127.0.0.1:8000/unlock-dailies" method="post" target="_blank">
+                <!--_blank makes it open a new tab-->
+                <button class="daily_button">View Dailies</button>
+            </form>
+        </div>
+
+
+    </div>
+</body>
+
+</html>

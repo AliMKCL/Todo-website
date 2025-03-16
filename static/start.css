@@ -1,0 +1,119 @@
+body {
+    background-color: rgb(255, 203, 219);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    padding: 10px;
+    margin-top: 100px;
+    height: 600px;
+    width: 600px;
+    display: flex;
+    justify-content: center;
+    display: block;
+    position: relative;
+}
+
+.above_header {
+    display: block;
+    border-color: black;
+    border-width: 5px;
+}
+
+.login_title {
+    font-family: Great Vibes;
+    font-size: 58px;
+    width: 100%;
+    height: 30%;
+}
+
+h1 {
+    margin-top: 10px;
+}
+
+.circular_image {
+    background-color: white;
+    height: 190px;
+    width: 190px;
+    border-radius: 50%;
+    border-color: black;
+    border: solid;
+    display: inline-block;
+    position: absolute;
+    transform: translate(20px, -30px);
+    overflow: hidden;
+}
+
+.man_face {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.username {
+    margin-top: 280px;
+    width: 200px;
+    height: 30px;
+    font-size: 16px;
+    display: block;
+}
+
+.password {
+    margin-top: 10px;
+    width: 200px;
+    height: 30px;
+    font-size: 16px;
+    display: block;
+}
+
+.username,
+.password,
+.login_button {
+    margin-left: 10px;
+}
+
+.login_button {
+    margin-top: 10px;
+    width: 100px;
+    height: 30px;
+    font-size: 16px;
+    display: block;
+    margin-left: 70px;
+}
+
+
+.below_header {
+    height: 400px;
+}
+
+.white_tulips {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    transform: translate(30px, 50px);
+}
+
+.quote1 {
+    display: block;
+    margin-top: 80px;
+    margin-left: 130px;
+    margin-bottom: 0px;
+}
+
+.quote2 {
+    display: block;
+    margin-left: 210px;
+    margin-top: 5px;
+}
+
+.quote1,
+.quote2 {
+    font-size: 20px;
+    color: gray;
+    font-style: italic;
+}
