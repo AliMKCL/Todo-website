@@ -39,10 +39,20 @@
         <input type="radio" name="toggle-input" id="toggle-inputs0">
 
         <div class="input-container0">
-            <form class="task_form0" action="/daily-complete-task" method="post">
+            <form class="task_form0" action="/daily-complete-task#complete-modal" method="post">
                 <input id="id" name="id" type="id" class="inputs0" placeholder="Enter id to complete">
                 <div><button type="submit" class="submit_button">Submit</button></div>
             </form>
+        </div>
+
+        <div id="complete-modal" class="modal">
+            <div class="modal-content">
+                <h2>Task Completed!</h2>
+                <img class="hihihi" src="/../images/hihihi.png">
+
+                <!-- Clicking "Return" removes the fragment from the URL, hiding the modal -->
+                <a href="/dailies" class="close-button">Return</a>
+            </div>
         </div>
 
         <input type="radio" name="toggle-input" id="toggle-inputs1">
@@ -70,20 +80,10 @@
         <input type="radio" name="toggle-input" id="toggle-inputs3">
 
         <div class="input-container3">
-            <form class="task_form2" action="/daily-delete-task#delete-modal" method="post">
+            <form class="task_form2" action="/daily-delete-task" method="post">
                 <input type="id" name="id" class="inputs3" placeholder="Enter id to delete">
                 <div><button type="submit" class="submit_button">Submit</button></div>
             </form>
-        </div>
-
-        <div id="delete-modal" class="modal">
-            <div class="modal-content">
-                <h2>Task Completed!</h2>
-                <img class="hihihi" src="/../images/hihihi.png">
-
-                <!-- Clicking "Return" removes the fragment from the URL, hiding the modal -->
-                <a href="/dailies" class="close-button">Return</a>
-            </div>
         </div>
 
         <input type="radio" name="toggle-input" id="toggle-inputs4">
