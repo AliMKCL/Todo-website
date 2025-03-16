@@ -163,6 +163,10 @@ th {
     width: 130px;
 }
 
+#priority.inputs2 {
+    height: 30px;
+}
+
 .submit_button {
     height: 30px;
     background-color: rgb(255, 182, 194);
