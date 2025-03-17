@@ -28,7 +28,6 @@ body {
     height: 20%;
     margin: 0px;
     text-align: center;
-    color: red;
 }
 
 h1 {
@@ -358,7 +357,7 @@ th {
     }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
+@media only screen and (min-width: 768px) and (max-width: 1200px) {
     .title {
         font-size: 30px;
         height: 20%;
