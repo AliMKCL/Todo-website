@@ -275,86 +275,6 @@ th {
     margin-top: 15px;
 }
 
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
-    .title {
-        font-size: 30px;
-        height: 20%;
-    }
-
-    .search {
-        margin-top: 10px;
-    }
-
-    .mid_bg {
-        height: 400px;
-    }
-
-    .teddy_bear {
-        height: 150px;
-        transform: translate(-80px, -40px);
-    }
-
-    .toggle-label {
-        font-size: 10px;
-        width: 50px;
-        height: 12px;
-        vertical-align: middle;
-    }
-
-    .bottom_buttons {
-        margin-top: 5px;
-    }
-
-    .input-container1,
-    .input-container2,
-    .input-container3 {
-        margin-top: 5px;
-        margin-right: 10px;
-    }
-
-    .inputs1,
-    .inputs2,
-    .inputs3 {
-        height: 25px;
-        width: 80px;
-    }
-
-    .inputs3 {
-        margin-right: 0px;
-    }
-
-    .submit_button {
-        font-size: 12px;
-        padding: 4px;
-        margin-left: 10px;
-        padding-right: 8px;
-        padding-left: 8px;
-    }
-
-    .task_form1,
-    .task_form2,
-    .task_form3 {
-        margin-right: 12px;
-    }
-
-    .right_bg {
-        margin-right: 15px;
-    }
-
-    .right_title {
-        font-size: 28px;
-    }
-
-    .daily_button {
-        width: 70%;
-        transform: translate(-5px, 0px);
-    }
-
-    .us {
-        transform: translate(150px, 30px);
-        height: 150px;
-    }
-}
 
 @media only screen and (max-width: 1600px) {
     .title {
@@ -434,5 +354,86 @@ th {
     .us {
         transform: translate(290px, 50px);
         height: 200px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .title {
+        font-size: 30px;
+        height: 20%;
+    }
+
+    .search {
+        margin-top: 10px;
+    }
+
+    .mid_bg {
+        height: 400px;
+    }
+
+    .teddy_bear {
+        height: 150px;
+        transform: translate(-80px, -40px);
+    }
+
+    .toggle-label {
+        font-size: 10px;
+        width: 50px;
+        height: 12px;
+        vertical-align: middle;
+    }
+
+    .bottom_buttons {
+        margin-top: 5px;
+    }
+
+    .input-container1,
+    .input-container2,
+    .input-container3 {
+        margin-top: 5px;
+        margin-right: 10px;
+    }
+
+    .inputs1,
+    .inputs2,
+    .inputs3 {
+        height: 25px;
+        width: 80px;
+    }
+
+    .inputs3 {
+        margin-right: 0px;
+    }
+
+    .submit_button {
+        font-size: 12px;
+        padding: 4px;
+        margin-left: 10px;
+        padding-right: 8px;
+        padding-left: 8px;
+    }
+
+    .task_form1,
+    .task_form2,
+    .task_form3 {
+        margin-right: 12px;
+    }
+
+    .right_bg {
+        margin-right: 15px;
+    }
+
+    .right_title {
+        font-size: 28px;
+    }
+
+    .daily_button {
+        width: 70%;
+        transform: translate(-5px, 0px);
+    }
+
+    .us {
+        transform: translate(150px, 30px);
+        height: 150px;
     }
 }
