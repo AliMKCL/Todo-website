@@ -50,7 +50,7 @@
         <input type="radio" name="toggle-input" id="toggle-inputs1">
 
         <div class="input-container1">
-            <form class="task_form1" action="/add-task" method="post" enctype="application/x-www-form-urlencoded">
+            <form class="task_form1" action="/add-task" method="post">
                 <input id="category" name="category" type="category" class="inputs1" placeholder="Enter category">
                 <input id="description" name="description" type="description" class="inputs1"
                     placeholder="Enter description">
@@ -68,7 +68,7 @@
         <input type="radio" name="toggle-input" id="toggle-inputs2">
 
         <div class="input-container2">
-            <form class="task_form2" action="/update-task" method="post" enctype="application/x-www-form-urlencoded">
+            <form class="task_form2" action="/update-task" method="post">
                 <input type="id" name="id" class="inputs2" placeholder="Enter id">
                 <input type="category" name="category" class="inputs2" placeholder="Enter category">
                 <input type="description" name="description" class="inputs2" placeholder="Enter description">
@@ -86,8 +86,7 @@
         <input type="radio" name="toggle-input" id="toggle-inputs3">
 
         <div class="input-container3">
-            <form class="task_form2" action="/delete-task#delete-modal" method="post"
-                enctype="application/x-www-form-urlencoded">
+            <form class="task_form2" action="/delete-task#delete-modal" method="post">
                 <input type="id" name="id" class="inputs3" placeholder="Enter id">
                 <div><button type="submit" class="submit_button">Submit</button></div>
             </form>

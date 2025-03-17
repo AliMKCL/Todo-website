@@ -121,6 +121,9 @@ def add_task(
     db = Depends(get_db)
     ):
     try:
+        # Log the received form data
+        logging.info(f"Received form data: category={category}, description={description}, priority={priority}, due_date={due_date}")
+        
         new_task = Task(
             category=category,
             description=description,
@@ -130,10 +133,10 @@ def add_task(
         db.add(new_task)
         db.commit()
         return RedirectResponse(url="/main", status_code=303)
-        #return templates.TemplateResponse("main.html", {"request": request, "tasks": tasks})
-    except Exception:
+    except Exception as e:
         db.rollback()
-        return {"message": "Error adding task."}
+        logging.error(f"Error adding task: {str(e)}")
+        return {"message": f"Error adding task: {str(e)}"}
     
 @app.post("/update-task", response_class=RedirectResponse)
 def update_task(
