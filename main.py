@@ -112,7 +112,7 @@ def daily(request: Request):
     return templates.TemplateResponse("daily.html", {"request": request})
 
 @app.post("/add-task", response_class=RedirectResponse)
-def add_task(
+async def add_task(
     request: Request,
     category: str = Form(...),
     description: str = Form(...),
@@ -121,8 +121,11 @@ def add_task(
     db = Depends(get_db)
     ):
     try:
-        # Log the received form data
-        logging.info(f"Received form data: category={category}, description={description}, priority={priority}, due_date={due_date}")
+        # Log request details
+        logging.info(f"Received POST request to /add-task")
+        logging.info(f"Request headers: {request.headers}")
+        logging.info(f"Request body: {await request.body()}")
+        logging.info(f"Form data: category={category}, description={description}, priority={priority}, due_date={due_date}")
         
         new_task = Task(
             category=category,
@@ -132,57 +135,93 @@ def add_task(
         )
         db.add(new_task)
         db.commit()
+        logging.info("Task added successfully")
         return RedirectResponse(url="/main", status_code=303)
     except Exception as e:
         db.rollback()
         logging.error(f"Error adding task: {str(e)}")
-        return {"message": f"Error adding task: {str(e)}"}
+        logging.error(f"Error type: {type(e)}")
+        import traceback
+        logging.error(f"Traceback: {traceback.format_exc()}")
+        return RedirectResponse(url="/main", status_code=303)
     
 @app.post("/update-task", response_class=RedirectResponse)
-def update_task(
+async def update_task(
     request: Request,
-    id: str=Form(...),
+    id: str = Form(...),
     category: str = Form(...),
     description: str = Form(...),
     priority: str = Form(...),
     due_date: str = Form(...),
     db = Depends(get_db)
 ):
-    
-    if id=="":
+    try:
+        logging.info(f"Received POST request to /update-task")
+        logging.info(f"Request headers: {request.headers}")
+        logging.info(f"Request body: {await request.body()}")
+        logging.info(f"Form data: id={id}, category={category}, description={description}, priority={priority}, due_date={due_date}")
+        
+        if not id:
+            return RedirectResponse(url="/main", status_code=303)
+            
+        id = int(id)
+        task = db.query(Task).filter(Task.id == id).first()
+        if not task:
+            logging.error(f"Task with id {id} not found")
+            return RedirectResponse(url="/main", status_code=303)
+            
+        if category:
+            task.category = category
+        if description:
+            task.description = description
+        if priority:
+            task.priority = priority
+        if due_date:
+            task.due_date = due_date
+            
+        db.commit()
+        logging.info(f"Task {id} updated successfully")
         return RedirectResponse(url="/main", status_code=303)
-    id = int(id)
-    task = db.query(Task).filter(Task.id == id).first()
-    if  not task:
+    except Exception as e:
+        db.rollback()
+        logging.error(f"Error updating task: {str(e)}")
+        logging.error(f"Error type: {type(e)}")
+        import traceback
+        logging.error(f"Traceback: {traceback.format_exc()}")
         return RedirectResponse(url="/main", status_code=303)
-    if category != "":
-        task.category = category
-    if description != "":
-        task.description = description
-    if priority != "":
-        task.priority = priority
-    if due_date != "":
-        task.due_date = due_date
-    db.commit()
-    return RedirectResponse(url="/main", status_code=303)
     
 @app.post("/delete-task", response_class=RedirectResponse)
-def delete_task(
+async def delete_task(
     request: Request,
     id: str = Form(...),
     db = Depends(get_db)
     ):
-    if id=="":
+    try:
+        logging.info(f"Received POST request to /delete-task")
+        logging.info(f"Request headers: {request.headers}")
+        logging.info(f"Request body: {await request.body()}")
+        logging.info(f"Form data: id={id}")
+        
+        if not id:
+            return RedirectResponse(url="/main", status_code=303)
+            
+        id = int(id)
+        task = db.query(Task).filter(Task.id == id).first()
+        if not task:
+            logging.error(f"Task with id {id} not found")
+            return RedirectResponse(url="/main", status_code=303)
+        
+        db.delete(task)
+        db.commit()
+        logging.info(f"Task {id} deleted successfully")
         return RedirectResponse(url="/main", status_code=303)
-    id=int(id)
-    task = db.query(Task).filter(Task.id == id).first()
-    if not task:
+    except Exception as e:
+        db.rollback()
+        logging.error(f"Error deleting task: {str(e)}")
+        logging.error(f"Error type: {type(e)}")
+        import traceback
+        logging.error(f"Traceback: {traceback.format_exc()}")
         return RedirectResponse(url="/main", status_code=303)
-    
-    # Delete the task and commit the change
-    db.delete(task)
-    db.commit()
-    return RedirectResponse(url="/main", status_code=303)
     
 
 @app.post("/daily-add-task", response_class=RedirectResponse)
