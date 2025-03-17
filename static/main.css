@@ -361,6 +361,7 @@ th {
     .title {
         font-size: 30px;
         height: 20%;
+        color: red;
     }
 
     .search {
