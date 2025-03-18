@@ -379,11 +379,20 @@ th {
     .inputs1,
     .inputs2,
     .inputs3 {
+        -webkit-appearance: none;
+        /* Remove default styling in Chrome, Safari */
+        -moz-appearance: none;
+        /* Remove default styling in Firefox */
+        appearance: none;
+        /* Standard property */
         height: 20px;
+        margin-left: 2px;
+        margin-right: 2px;
     }
 
     #priority {
         height: 20px;
         background-color: white;
     }
+
 }
