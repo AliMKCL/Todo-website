@@ -112,7 +112,7 @@ def daily(request: Request):
     return templates.TemplateResponse("daily.html", {"request": request})
 
 @app.post("/add-task", response_class=RedirectResponse)
-async def add_task(
+def add_task(
     request: Request,
     category: str = Form(...),
     description: str = Form(...),
@@ -121,12 +121,6 @@ async def add_task(
     db = Depends(get_db)
     ):
     try:
-        # Log request details
-        logging.info(f"Received POST request to /add-task")
-        logging.info(f"Request headers: {request.headers}")
-        logging.info(f"Request body: {await request.body()}")
-        logging.info(f"Form data: category={category}, description={description}, priority={priority}, due_date={due_date}")
-        
         new_task = Task(
             category=category,
             description=description,
@@ -135,18 +129,13 @@ async def add_task(
         )
         db.add(new_task)
         db.commit()
-        logging.info("Task added successfully")
         return RedirectResponse(url="/main", status_code=303)
     except Exception as e:
         db.rollback()
-        logging.error(f"Error adding task: {str(e)}")
-        logging.error(f"Error type: {type(e)}")
-        import traceback
-        logging.error(f"Traceback: {traceback.format_exc()}")
         return RedirectResponse(url="/main", status_code=303)
     
 @app.post("/update-task", response_class=RedirectResponse)
-async def update_task(
+def update_task(
     request: Request,
     id: str = Form(...),
     category: str = Form(...),
@@ -156,10 +145,6 @@ async def update_task(
     db = Depends(get_db)
 ):
     try:
-        logging.info(f"Received POST request to /update-task")
-        logging.info(f"Request headers: {request.headers}")
-        logging.info(f"Request body: {await request.body()}")
-        logging.info(f"Form data: id={id}, category={category}, description={description}, priority={priority}, due_date={due_date}")
         
         if not id:
             return RedirectResponse(url="/main", status_code=303)
@@ -167,7 +152,6 @@ async def update_task(
         id = int(id)
         task = db.query(Task).filter(Task.id == id).first()
         if not task:
-            logging.error(f"Task with id {id} not found")
             return RedirectResponse(url="/main", status_code=303)
             
         if category:
@@ -180,27 +164,18 @@ async def update_task(
             task.due_date = due_date
             
         db.commit()
-        logging.info(f"Task {id} updated successfully")
         return RedirectResponse(url="/main", status_code=303)
     except Exception as e:
         db.rollback()
-        logging.error(f"Error updating task: {str(e)}")
-        logging.error(f"Error type: {type(e)}")
-        import traceback
-        logging.error(f"Traceback: {traceback.format_exc()}")
         return RedirectResponse(url="/main", status_code=303)
     
 @app.post("/delete-task", response_class=RedirectResponse)
-async def delete_task(
+def delete_task(
     request: Request,
     id: str = Form(...),
     db = Depends(get_db)
     ):
     try:
-        logging.info(f"Received POST request to /delete-task")
-        logging.info(f"Request headers: {request.headers}")
-        logging.info(f"Request body: {await request.body()}")
-        logging.info(f"Form data: id={id}")
         
         if not id:
             return RedirectResponse(url="/main", status_code=303)
@@ -208,19 +183,14 @@ async def delete_task(
         id = int(id)
         task = db.query(Task).filter(Task.id == id).first()
         if not task:
-            logging.error(f"Task with id {id} not found")
             return RedirectResponse(url="/main", status_code=303)
         
         db.delete(task)
         db.commit()
-        logging.info(f"Task {id} deleted successfully")
         return RedirectResponse(url="/main", status_code=303)
     except Exception as e:
         db.rollback()
-        logging.error(f"Error deleting task: {str(e)}")
-        logging.error(f"Error type: {type(e)}")
         import traceback
-        logging.error(f"Traceback: {traceback.format_exc()}")
         return RedirectResponse(url="/main", status_code=303)
     
 
