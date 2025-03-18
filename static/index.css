@@ -128,4 +128,7 @@ h1 {
         margin-bottom: 5px;
     }
 
+    .login {
+        height: 500px;
+    }
 }
