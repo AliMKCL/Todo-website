@@ -19,6 +19,7 @@ body {
     display: block;
     position: relative;
     overflow: visible;
+    z-index: 1;
 }
 
 .title {
@@ -121,6 +122,7 @@ th {
     bottom: 0;
     right: 0;
     transform: translate(400px, 108px);
+    z-index: -2;
 }
 
 .hihihi {

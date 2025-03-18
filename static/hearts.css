@@ -1,19 +1,28 @@
-/* hearts.css */
-body {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background: #000;
+/* Make sure the container covers the viewport and is behind other content */
+#hearts-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    /* Ensure it sits behind other elements */
+    pointer-events: none;
+    /* Allow clicks to pass through */
 }
 
+/* Floating hearts styling */
 .heart {
     position: absolute;
     bottom: -50px;
+    /* Start off-screen */
     color: #ff3366;
     font-size: 24px;
-    animation: float 4s linear infinite;
+    animation: float 8s linear infinite;
+    z-index: -1;
 }
 
+/* Keyframes for the float animation */
 @keyframes float {
     0% {
         transform: translateY(0) rotate(0deg);
