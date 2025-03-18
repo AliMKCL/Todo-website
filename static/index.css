@@ -136,4 +136,8 @@ h1 {
     .login_button {
         background-color: rgb(255, 182, 194);
     }
+
+    .below_header {
+        transform: translateY(-200px);
+    }
 }
