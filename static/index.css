@@ -85,6 +85,7 @@ h1 {
     display: block;
     margin-left: 70px;
     background-color: rgb(255, 182, 194);
+    border-radius: 5px;
 }
 
 
