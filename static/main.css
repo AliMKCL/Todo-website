@@ -343,7 +343,7 @@ th {
     .task_form1,
     .task_form2,
     .task_form3 {
-        margin-right: 0px;
+        margin-left: -18px;
     }
 
     .right_bg {
