@@ -1,0 +1,27 @@
+/* hearts.css */
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #000;
+}
+
+.heart {
+    position: absolute;
+    bottom: -50px;
+    color: #ff3366;
+    font-size: 24px;
+    animation: float 4s linear infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
