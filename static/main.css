@@ -368,11 +368,11 @@ th {
 
     .right_title {
         font-size: 30px;
-        margin-right: 10px;
+        margin-left: -5px;
     }
 
     .daily_button {
         width: 60%;
-        margin-left: -20px;
+        margin-left: -15px;
     }
 }
