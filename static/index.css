@@ -138,10 +138,10 @@ h1 {
     }
 
     .below_header {
-        transform: translateY(-120px);
+        transform: translateY(-100px);
     }
 
     .white_tulips {
-        transform: translateY(-50px);
+        transform: translate(30px, -100px);
     }
 }
