@@ -375,4 +375,15 @@ th {
         width: 60%;
         margin-left: -15px;
     }
+
+    .inputs1,
+    .inputs2,
+    .inputs3 {
+        height: 20px;
+    }
+
+    #priority {
+        height: 20px;
+        background-color: white;
+    }
 }
