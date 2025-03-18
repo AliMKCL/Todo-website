@@ -165,6 +165,13 @@ th {
 .inputs1,
 .inputs2,
 .inputs3 {
+    -webkit-appearance: none;
+    /* Remove default styling in Chrome, Safari */
+    -moz-appearance: none;
+    /* Remove default styling in Firefox */
+    appearance: none;
+    /* Standard property */
+
     height: 30px;
     border-radius: 5px;
     border-color: black;
@@ -318,6 +325,7 @@ th {
     .inputs3 {
         height: 30px;
         width: 102px;
+        font-size: 12px;
     }
 
     .inputs3 {
@@ -335,7 +343,7 @@ th {
     .task_form1,
     .task_form2,
     .task_form3 {
-        margin-right: 24px;
+        margin-right: 0px;
     }
 
     .right_bg {
@@ -379,12 +387,6 @@ th {
     .inputs1,
     .inputs2,
     .inputs3 {
-        -webkit-appearance: none;
-        /* Remove default styling in Chrome, Safari */
-        -moz-appearance: none;
-        /* Remove default styling in Firefox */
-        appearance: none;
-        /* Standard property */
         height: 20px;
         margin-left: 2px;
         margin-right: 2px;
