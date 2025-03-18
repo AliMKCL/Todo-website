@@ -133,14 +133,14 @@ h1 {
     }
 
     .white_tulips {
-        transform: translate(30px, -180px);
+        transform: translate(30px, -190px);
     }
 
     .quote1 {
         margin-top: 60px;
     }
 
-    .profile {
+    .circular_image {
         margin-left: 10px;
     }
 }
