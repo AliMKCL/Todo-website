@@ -363,14 +363,16 @@ th {
     }
 
     .search {
-        width: 96.5%;
+        width: 96.8%;
     }
 
     .right_title {
         font-size: 30px;
+        margin-right: 5px;
     }
 
     .daily_button {
         width: 60%;
+        margin-right: 10px;
     }
 }
