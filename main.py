@@ -11,15 +11,24 @@ from starlette.middleware.sessions import SessionMiddleware
 from dotenv import load_dotenv
 import os
 
+
 load_dotenv()
-Base.metadata.create_all(engine)
+#Base.metadata.create_all(engine)
+
+app = FastAPI()
+
+
+@app.on_event("startup")
+async def startup_event():
+    # This will create the tables if they do not exist
+    Base.metadata.create_all(engine)
 
 #Secrets
 SECRET_KEY = os.environ.get("SECRET_KEY")
 username_login = os.environ.get("username")
 password_login  = os.environ.get("password")
 
-app = FastAPI()
+
 app.add_middleware(SessionMiddleware, secret_key=SECRET_KEY) #add max_age = ... (seconds) to set session expiry time.
 
 templates = Jinja2Templates(directory="templates")
