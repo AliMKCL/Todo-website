@@ -28,7 +28,6 @@ body {
     height: 20%;
     margin: 0px;
     text-align: center;
-    color: red;
 }
 
 h1 {
@@ -360,11 +359,11 @@ th {
 
 @media only screen and (min-width: 700px) and (max-width: 1200px) {
     .title {
-        font-size: 50px;
+        font-size: 30px;
     }
 
     .search {
-        width: 95%;
+        width: 97%;
     }
 
     .right_title {
@@ -372,6 +371,6 @@ th {
     }
 
     .daily_button {
-        width: 44%;
+        width: 50%;
     }
 }
