@@ -150,12 +150,33 @@
             heart.style.left = Math.random() * 100 + "vw";
             heart.style.animationDuration = (3 + Math.random() * 3) + "s";
             heart.style.fontSize = (20 + Math.random() * 30) + "px";
+            // Record the creation time in a custom attribute
+            heart.setAttribute("data-created", Date.now());
             document.body.appendChild(heart);
+            // Remove heart when animation ends
             heart.addEventListener('animationend', () => {
                 heart.remove();
             });
         }
-        setInterval(createHeart, 1500);</script>
+
+        // Periodic cleanup: remove hearts that are older than 7 seconds (adjust as needed)
+        function cleanupHearts() {
+            const hearts = document.querySelectorAll('.heart');
+            const now = Date.now();
+            hearts.forEach(heart => {
+                const created = parseInt(heart.getAttribute("data-created"));
+                // If the heart has been around for longer than its maximum expected lifetime, remove it
+                if (now - created > 7000) { // 7000ms = 7 seconds
+                    heart.remove();
+                }
+            });
+        }
+
+        // Create a new heart every 500ms
+        setInterval(createHeart, 500);
+        // Run cleanup every second
+        setInterval(cleanupHearts, 1000);</script>
+    </script>
 </body>
 
 </html>
