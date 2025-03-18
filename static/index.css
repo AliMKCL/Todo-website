@@ -104,18 +104,8 @@ h1 {
     margin-top: 80px;
     margin-left: 130px;
     margin-bottom: 0px;
-}
-
-.quote2 {
-    display: block;
-    margin-left: 210px;
-    margin-top: 5px;
-}
-
-.quote1,
-.quote2 {
-    font-size: 20px;
     color: gray;
+    font-size: 20px;
     font-style: italic;
 }
 
@@ -126,7 +116,7 @@ h1 {
 
     .username,
     .password {
-        margin-bottom: 5px;
+        margin-bottom: 10px;
     }
 
     .login {
@@ -135,6 +125,7 @@ h1 {
 
     .login_button {
         background-color: rgb(255, 182, 194);
+        border: 1px solid black;
     }
 
     .below_header {
@@ -142,6 +133,10 @@ h1 {
     }
 
     .white_tulips {
-        transform: translate(30px, -100px);
+        transform: translate(30px, -120px);
+    }
+
+    .quote1 {
+        margin-top: 50px;
     }
 }
