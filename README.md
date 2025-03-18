@@ -1,0 +1,1 @@
+This project is a to-do list website with fastapi and sqlalchemy for its backend and database, and is hosted online with an Amazon EC2 instance. It is a project made for a friend, so certain decisions I made were caused by knowing only 1 person will ever use it (not even myself).
