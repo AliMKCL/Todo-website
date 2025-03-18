@@ -193,6 +193,12 @@ th {
     margin-top: 5px;
     margin-right: 12px;
     cursor: pointer;
+    justify-content: center;
+}
+
+.submit_div {
+    display: flex;
+    justify-content: center;
 }
 
 .right_bg {
@@ -340,10 +346,16 @@ th {
         padding-left: 12px;
     }
 
-    .task_form1,
-    .task_form2,
-    .task_form3 {
+    .task_form1 {
         margin-left: -18px;
+    }
+
+    .task_form2 {
+        margin-left: -22px;
+    }
+
+    .task_form3 {
+        margin-left: -21px;
     }
 
     .right_bg {
