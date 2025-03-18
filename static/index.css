@@ -116,7 +116,7 @@ h1 {
 
     .username,
     .password {
-        margin-bottom: 10px;
+        margin-bottom: 40px;
     }
 
     .login {
@@ -125,7 +125,7 @@ h1 {
 
     .login_button {
         background-color: rgb(255, 182, 194);
-        border: 1px solid black;
+        border: black;
     }
 
     .below_header {
