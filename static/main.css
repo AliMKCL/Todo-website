@@ -373,6 +373,6 @@ th {
 
     .daily_button {
         width: 60%;
-        margin-right: 200px;
+        margin-left: -20px;
     }
 }
