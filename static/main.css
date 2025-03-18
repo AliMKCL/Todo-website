@@ -52,7 +52,7 @@ h1 {
 }
 
 .search {
-    width: 99%;
+    width: 99.15%;
     font-size: 20px;
     margin-right: 50px;
     margin-top: 20px;
@@ -360,6 +360,18 @@ th {
 
 @media only screen and (min-width: 700px) and (max-width: 1200px) {
     .title {
-        color: blue;
+        font-size: 50px;
+    }
+
+    .search {
+        width: 95%;
+    }
+
+    .right_title {
+        font-size: 30px;
+    }
+
+    .daily_button {
+        width: 44%;
     }
 }
